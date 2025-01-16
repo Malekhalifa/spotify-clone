@@ -60,7 +60,7 @@ export const MOCK_CHANSONS: Chanson[] = [
     duree: '3:05',
     genre: 'Chanson Française',
     annee: 1947,
-    image: 'assets/img6'
+    image: 'assets/img6.jpeg'
   },
   {
     id: 7,

@@ -14,6 +14,7 @@ import { ChansonComponent } from "../chanson/chanson.component";
   standalone: true
 })
 export class ListeChansonsComponent implements OnInit {
+  chansons_liste: Chanson[] = [];
   chansons: Chanson[] = [];
   verifiedArtists: Set<string> = new Set(); // To store verified artists
   selectedChanson: Chanson | null = null; // Initialize to null
@@ -21,6 +22,7 @@ export class ListeChansonsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.chansons_liste = MOCK_LISTESOMMAIRE[0].chansons;
     this.chansons = MOCK_CHANSONS;  // ✅ Chargement des chansons mockées
     this.loadVerifiedArtists();
   }
