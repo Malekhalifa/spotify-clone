@@ -7,7 +7,7 @@ export const MOCK_LISTESOMMAIRE: ListeSommaire[] = [
     titre: 'Chansons aimées',
     image: 'assets/img11.png',
     type: 'Liste de lecture',
-    verifie: false,
+    verifie: true,
     DateAjout: '2024-01-01',
     DateDerniereEcoutee: '2025-01-13',
     Commentaire: "3 chansons",
