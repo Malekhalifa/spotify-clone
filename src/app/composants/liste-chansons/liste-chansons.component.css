@@ -1,0 +1,76 @@
+/* Tableau des chansons */
+.tableau-chansons {
+  background-color: #c35aa7;
+  padding: 20px;
+  border-radius: 8px;
+  color: green;
+}
+
+/* Style des lignes de chansons */
+.chanson-ligne {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Chanson populaire */
+.populaire {
+  background-color: #ffcc00;
+  font-weight: bold;
+}
+
+/* Chanson peu écoutée */
+.peu-ecoutee {
+  opacity: 0.5;
+}
+
+/* Icône artiste vérifié */
+.artiste-verifie::after {
+  content: '✔️';
+  margin-left: 5px;
+  color: gold;
+}
+
+/* Tableau des chansons */
+.tableau-chansons {
+  background-color: #f0f0f0;
+  /* Couleur de fond plus claire */
+  padding: 20px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  /* Choix d'une police moderne */
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.card-content {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.verified-icon {
+  height: 20px;
+  width: 20px;
+  margin: auto;
+}

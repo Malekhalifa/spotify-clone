@@ -1,0 +1,17 @@
+/* Conteneur principal du composant Chanson */
+.chanson-container {
+    background-color: #c35aa7; /* Fond violet */
+    padding: 10px;
+    border-radius: 5px;
+    height: 100%; /* Prend toute la hauteur disponible */
+    width: 100%; /* Prend toute la largeur disponible */
+    box-sizing: border-box; /* Inclut le padding dans la taille */
+  }
+  
+  /* Titre de la section */
+  .chanson-titre {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 10px;
+  }
+  

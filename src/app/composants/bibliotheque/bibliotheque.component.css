@@ -1,0 +1,63 @@
+/* Titre du menu */
+.titre-bibliotheque {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* Icône + */
+.ajouter-liste {
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  margin-top: 10px;
+}
+
+/* Zone de recherche */
+.recherche {
+  width: 100%;
+  padding: 8px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: none;
+}
+
+/* Pastilles Angular Material */
+.chips {
+  margin: 15px;
+  display: flex;
+  margin-top: 20px;
+}
+
+.chip {
+  padding: 8px 12px;
+  background-color: #444;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.liste-sommaire {
+  background-color: #7fd34e;
+  border-radius: 8px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  margin-right: 10px;
+  height: 40px;
+}
+
+.ajout-icon {
+  margin: auto;
+  height: 20px;
+  width: 20px;
+}

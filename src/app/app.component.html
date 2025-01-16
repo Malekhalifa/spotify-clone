@@ -1,0 +1,24 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side">
+
+    <img src="library.png" alt="Bibliothèque Icon" class="search-icon" (click)="drawer.toggle()" />
+    <app-bibliotheque></app-bibliotheque>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <img src="library.png" alt="Bibliothèque Icon" class="search-icon" mat-button (click)="drawer.toggle()" />
+
+    <div class="main-content">
+      <!-- Liste détaillée -->
+      <div class="liste-detaillee">
+        <app-liste-detaillee></app-liste-detaillee>
+      </div>
+
+      <!-- Tableau des chansons -->
+      <div class="chanson">
+        <app-chanson></app-chanson>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

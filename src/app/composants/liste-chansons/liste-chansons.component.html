@@ -1,0 +1,16 @@
+<div class="tableau-chansons liste-chansons">
+  <h2 class="text-center">Chansons</h2>
+  <div class="grid grid-cols-3 gap-4">
+    <div *ngFor="let chanson of chansons" class="card" (click)="selectChanson(chanson)">
+      <img [src]="chanson.image" [alt]="chanson.titre" class="card-img-top">
+      <div class="card-content">
+        <h5 class="card-title">{{ chanson.titre }}</h5>
+        <p class="card-text">
+          {{ chanson.artiste }}
+          <img *ngIf="isArtistVerified(chanson.artiste)" src="check.png" class="verified-icon" />
+        </p>
+        <p class="card-text">Durée : {{ chanson.duree }}</p>
+      </div>
+    </div>
+  </div>
+</div>

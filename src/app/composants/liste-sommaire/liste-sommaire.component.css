@@ -1,0 +1,32 @@
+/* Section détaillée */
+.liste-sommaire {
+  background-color: #814ed3;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Titre */
+.liste-detaillee h2 {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* src/app/composants/liste-sommaire/liste-sommaire.component.css */
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+.verified-icon {
+  height: 20px;
+  width: 20px;
+  margin: 10px;
+}
+
+#iconn {
+  background: none;
+  padding-right: 5px;
+}
