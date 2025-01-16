@@ -1,15 +1,23 @@
-
 <table>
+    <tr>
+        <td>image</td>
+        <td>titre</td>
+        <td>type</td>
+        <td>verifie</td>
+        <td>date d'ajout</td>
+        <td>date derniere ecoutre</td>
+        <td>Commentaire</td>
+    </tr>
     <tr *ngFor="let liste of listes">
-        <td colspan="2">
+        <td>
             <img [src]="liste.image" alt="music image" style="height: 100px; width: 100px; border-radius: 5px;">
         </td>
         <td>{{ liste.titre }}</td>
-        <td>{{ liste.sousTitre }}</td>
         <td>{{ liste.type }}</td>
-        <td>{{ liste.description }}</td>
-        <td>{{ liste.DatePublication }}</td>
-        <td>{{ liste.nombreSauvegardes }}</td>
+        <td>{{ liste.verifie }}</td>
+        <td>{{ liste.DateAjout }}</td>
+        <td>{{ liste.DateDerniereEcoutee}}</td>
+        <td>{{ liste.Commentaire }}</td>
     </tr>
     <tr></tr>
 </table>

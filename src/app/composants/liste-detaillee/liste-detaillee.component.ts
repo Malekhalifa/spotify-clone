@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListeChansonsComponent } from '../liste-chansons/liste-chansons.component';
-import { ListeDetaillee } from '../../interfaces/liste-detaillee';
-import { MOCK_LISTEDETAILLEE } from '../../mocks/mock-listecomplet';
+import { MOCK_LISTESOMMAIRE } from '../../mocks/mock-listeSommaire'; // Import the mock list
+import { ListeSommaire } from '../../interfaces/liste-sommaire';
 
 @Component({
   selector: 'app-liste-detaillee',
@@ -12,9 +12,9 @@ import { MOCK_LISTEDETAILLEE } from '../../mocks/mock-listecomplet';
   imports: [CommonModule, ListeChansonsComponent]
 })
 export class ListeDetailleeComponent implements OnInit {
-  listes: ListeDetaillee[] = [];
+  listes: ListeSommaire[] = [];
 
   ngOnInit(): void {
-    this.listes = MOCK_LISTEDETAILLEE;
+    this.listes = MOCK_LISTESOMMAIRE.filter(item => item.id === 1 && item.titre === 'Chansons aimées');
   }
 }
