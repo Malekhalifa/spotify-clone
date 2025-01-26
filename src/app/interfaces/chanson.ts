@@ -1,12 +1,15 @@
 export interface Chanson {
-    id: number;
+    id?: number;
     titre: string;
     artiste: string;
     album: string;
-    duree: string;
+    duree: number;
     genre?: string;
-    annee: number;
-    image: string;
+    annee?: number;
+    image?: string;
+    nombreDeLectures: number;
+    paroles?: string;
+    datePublication?: string;
 }
 
 

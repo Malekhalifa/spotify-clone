@@ -1,4 +1,3 @@
-
 import { ListeSommaire } from '../interfaces/liste-sommaire';
 
 export const MOCK_LISTESOMMAIRE: ListeSommaire[] = [
@@ -10,36 +9,38 @@ export const MOCK_LISTESOMMAIRE: ListeSommaire[] = [
     verifie: true,
     DateAjout: '2024-01-01',
     DateDerniereEcoutee: '2025-01-13',
-    Commentaire: "3 chansons",
     chansons: [{
       id: 1,
       titre: 'Sous le vent',
       artiste: 'Garou & Céline Dion',
       album: 'Seul',
-      duree: '3:59',
+      duree: 239,
       genre: 'Pop',
       annee: 2001,
-      image: 'assets/img1.jpg'
+      image: 'assets/img1.jpg',
+      nombreDeLectures: 89000
     },
     {
       id: 2,
       titre: 'Je te promets',
       artiste: 'Johnny Hallyday',
       album: 'Gang',
-      duree: '4:36',
+      duree: 276,
       genre: 'Rock',
       annee: 1986,
-      image: 'assets/img2.jpg'
+      image: 'assets/img2.jpg',
+      nombreDeLectures: 0
     },
     {
       id: 3,
       titre: 'Formidable',
       artiste: 'Stromae',
       album: 'Racine Carrée',
-      duree: '3:37',
+      duree: 217,
       genre: 'Electro',
       annee: 2013,
-      image: 'assets/img3.jpeg'
+      image: 'assets/img3.jpeg',
+      nombreDeLectures: 8900000
     }]
   },
 
@@ -57,30 +58,33 @@ export const MOCK_LISTESOMMAIRE: ListeSommaire[] = [
         titre: 'Tout le monde veut devenir un cat',
         artiste: 'Phil Harris',
         album: 'La Belle et le Clochard',
-        duree: '2:25',
+        duree: 145,
         genre: 'Jazz',
         annee: 1955,
-        image: 'assets/img4.jpeg'
+        image: 'assets/img4.jpeg',
+        nombreDeLectures: 100000
       },
       {
         id: 5,
         titre: 'Ne me quitte pas',
         artiste: 'Jacques Brel',
         album: 'Ne me quitte pas',
-        duree: '4:17',
+        duree: 257,
         genre: 'Chanson Française',
         annee: 1959,
-        image: 'assets/img5.jpeg'
+        image: 'assets/img5.jpeg',
+        nombreDeLectures: 1000
       },
       {
         id: 6,
         titre: 'La Vie en rose',
         artiste: 'Édith Piaf',
         album: 'Édith Piaf',
-        duree: '3:05',
+        duree: 185,
         genre: 'Chanson Française',
         annee: 1947,
         image: 'assets/img6.jpeg',
+        nombreDeLectures: 2560000
       }
     ]
   },
@@ -99,50 +103,55 @@ export const MOCK_LISTESOMMAIRE: ListeSommaire[] = [
       titre: 'My Heart Will Go On',
       artiste: 'Céline Dion',
       album: "Let’s Talk About Love",
-      duree: '4:40',
+      duree: 280,
       genre: 'Pop',
       annee: 1997,
-      image: 'assets/img7.jpeg'
+      image: 'assets/img7.jpeg',
+      nombreDeLectures: 45000
     },
     {
       id: 8,
       titre: "Pour que tu m'aimes encore",
       artiste: 'Céline Dion',
       album: "D'eux",
-      duree: "4:25",
+      duree: 265,
       genre: 'Chanson Française',
       annee: 1995,
-      image: 'assets/img8.jpeg'
+      image: 'assets/img8.jpeg',
+      nombreDeLectures: 89000
     },
     {
       id: 9,
       titre: 'The Power of Love',
       artiste: 'Céline Dion',
       album: 'The Colour of My Love',
-      duree: '5:42',
+      duree: 342,
       genre: 'Pop',
       annee: 1993,
-      image: 'assets/img9.jpeg'
+      image: 'assets/img9.jpeg',
+      nombreDeLectures: 800
     },
     {
       id: 10,
       titre: 'Immortality',
       artiste: 'Céline Dion',
       album: 'Back to Life',
-      duree: '4:09',
+      duree: 249,
       genre: 'Pop',
       annee: 1997,
-      image: 'assets/img10.jpeg'
+      image: 'assets/img10.jpeg',
+      nombreDeLectures: 1100000
     },
     {
       id: 11,
       titre: 'Ashes',
       artiste: 'Céline Dion',
       album: 'Courage',
-      duree: '3:33',
+      duree: 213,
       genre: 'Pop',
       annee: 2019,
-      image: 'assets/img11.jpeg'
+      image: 'assets/img11.jpeg',
+      nombreDeLectures: 89000
     }
 
     ],

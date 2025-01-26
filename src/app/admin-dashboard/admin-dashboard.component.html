@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Playlists</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let utilisateur of utilisateurs">
+                <td>{{ utilisateur.nom }}</td>
+                <td>{{ utilisateur.prenom }}</td>
+                <td>
+                    <!-- Fix: Check for existence and length -->
+                    <table
+                        *ngIf="listesParUtilisateur[utilisateur.id] && listesParUtilisateur[utilisateur.id].length > 0">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Sous-titre</th>
+                                <th>Description</th>
+                                <th>Visibilité</th>
+                                <th>Chansons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let liste of listesParUtilisateur[utilisateur.id]">
+                                <td>{{ liste.titre }}</td>
+                                <td>{{ liste.soustitre }}</td>
+                                <td>{{ liste.description }}</td>
+                                <td>{{ liste.visibilite }}</td>
+                                <td>
+                                    <ul *ngIf="liste.chansons">
+                                        <li *ngFor="let chanson of liste.chansons">
+                                            {{ chanson.titre }} - {{ chanson.artiste }} ({{ chanson.duree }}s)
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p *ngIf="!listesParUtilisateur[utilisateur.id]?.length">Aucune playlist trouvée.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

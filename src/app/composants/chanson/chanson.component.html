@@ -1,9 +1,31 @@
-<div *ngIf="chanson">
-    <h1>{{ chanson.titre }}</h1>
-    <p><strong>Artiste:</strong> {{ chanson.artiste }}</p>
-    <p><strong>Album:</strong> {{ chanson.album }}</p>
-    <p><strong>Durée:</strong> {{ chanson.duree }}</p>
-    <p><strong>Paroles:</strong> {{ chanson.paroles }}</p>
-    <p><strong>Date de publication:</strong> {{ chanson.datePublication }}</p>
-    <p><strong>Nombre de lectures:</strong> {{ chanson.nombreLectures }}</p>
+<div>
+  <h2>Chansons</h2>
+  <ul>
+    <li *ngFor="let chanson of chansons" (click)="selectChanson(chanson)">
+      {{ chanson.titre }} - {{ chanson.artiste }}
+      <button (click)="deleteChanson(chanson.id)">Delete</button>
+    </li>
+  </ul>
+
+  <div>
+    <h3>Edit Chanson</h3>
+    <form>
+      <input [(ngModel)]="selectedChanson.titre" name="titre" placeholder="Titre">
+
+      <input [(ngModel)]="selectedChanson.artiste" name="artiste" placeholder="Artiste">
+
+      <input [(ngModel)]="selectedChanson.paroles" name="paroles" placeholder="Paroles">
+
+      <input [(ngModel)]="selectedChanson.album" name="album" placeholder="Album">
+
+      <input [(ngModel)]="selectedChanson.datePublication" name="datePublication" type="date">
+
+      <input [(ngModel)]="selectedChanson.duree" name="duree" type="number" placeholder="Durée">
+
+      <input [(ngModel)]="selectedChanson.nombreDeLectures" name="nombreDeLectures" type="number"
+        placeholder="nombre de lecture">
+
+      <button (click)="createChanson()">Create</button>
+    </form>
+  </div>
 </div>

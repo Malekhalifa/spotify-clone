@@ -1,7 +1,8 @@
 <div class="tableau-chansons liste-chansons">
   <h2 class="text-center">Chansons</h2>
   <div class="grid grid-cols-3 gap-4">
-    <div *ngFor="let chanson of chansons_liste" class="card" (click)="selectChanson(chanson)">
+    <div *ngFor="let chanson of chansons" class="card" (click)="selectChanson(chanson)"
+      [ngClass]="{'populaire': isPopular(chanson)}">
       <img [src]="chanson.image" [alt]="chanson.titre" class="card-img-top">
       <div class="card-content">
         <h5 class="card-title">{{ chanson.titre }}</h5>
@@ -9,7 +10,12 @@
           {{ chanson.artiste }}
           <img *ngIf="isArtistVerified(chanson.artiste)" src="check.png" class="verified-icon" />
         </p>
-        <p class="card-text">Durée : {{ chanson.duree }}</p>
+        <p class="card-text">Durée : {{ chanson.duree | durationPipe }}</p>
+        <p class="card-text">Genre : {{ chanson.genre }}</p>
+        <p class="card-text">Année de publication : {{ chanson.annee | date }}</p>
+        <p class="card-text">
+          Nombre de lectures : {{ chanson.nombreDeLectures | numberFormat}}
+        </p>
       </div>
     </div>
   </div>

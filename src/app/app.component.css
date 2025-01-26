@@ -3,68 +3,39 @@
   background-color: red;
   margin: 3em;
   padding: 2em;
-  height: 100%;
+  height: 100%
 }
 
-/* Structure générale */
 .mat-drawer-container {
   display: flex;
-  height: 100%;
+  height: 100%
 }
 
-
-/* Zone de la bibliothèque (gauche) */
 .mat-drawer {
   background-color: #111;
-  color: white;
+  color: #fff;
   padding: 20px;
-  width: 400px;
+  width: 40%
 }
 
-/* Contenu principal (droite) */
 .mat-drawer-content {
   flex: 1;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5
 }
 
-/* Liste détaillée en haut */
-.liste-detaillee {
-  background-color: #a3d977;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  flex: 2;
-  /* Prend plus d'espace verticalement */
-}
-
-/* Tableau des chansons */
-.tableau-chansons {
-  background-color: #c35aa7;
-  padding: 20px;
-  border-radius: 8px;
-  flex: 1;
-}
-
-/* chanson en bas */
 .chanson {
   background-color: #d99677;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
-  flex: 3;
+  flex: 3
 }
 
 .mat-drawer {
-  transition: width 0.3s ease;
-  /* Smooth transition */
-}
-
-.mat-drawer.closed {
-  width: 50px;
-  /* Adjust this width to show the icon */
+  transition: width .3s ease
 }
 
 .search-icon {
   margin-right: 10px;
-  height: 40px;
+  height: 40px
 }

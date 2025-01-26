@@ -9,8 +9,7 @@ export interface ListeSommaire {
     type: string;
     verifie: boolean;
     DateAjout: string;
-    DateDerniereEcoutee: string;
+    DateDerniereEcoutee?: string;
     Commentaire?: string;
     chansons: Chanson[];
-
 }

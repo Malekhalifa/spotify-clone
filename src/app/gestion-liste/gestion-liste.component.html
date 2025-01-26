@@ -1,0 +1,98 @@
+<div class="container">
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Search by titre..." />
+    </div>
+
+    <!-- Create Button and Form -->
+    <button (click)="toggleForm()">Create</button>
+    <div *ngIf="showForm" class="form-container">
+        <input [(ngModel)]="currentListe.titre" placeholder="Titre" />
+        <input [(ngModel)]="currentListe.soustitre" placeholder="Sous-titre" />
+        <input [(ngModel)]="currentListe.image" placeholder="Image URL" />
+        <input [(ngModel)]="currentListe.description" placeholder="Description" />
+        <input [(ngModel)]="currentListe.type" placeholder="Type" />
+        <input [(ngModel)]="currentListe.verifie" type="checkbox" /> Verifie
+        <input [(ngModel)]="currentListe.datePublication" type="date" />
+        <select [(ngModel)]="currentListe.visibilite">
+            <option value="publique">Publique</option>
+            <option value="prive">Prive</option>
+        </select>
+
+        <button *ngIf="!isEditing" (click)="createListe()">Create</button>
+        <button *ngIf="isEditing" (click)="updateListe()">Confirm</button>
+        <button (click)="toggleForm()">Cancel</button>
+    </div>
+
+    <!-- Table for Lists -->
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Sous-titre</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Verifie</th>
+                <th>Date Publication</th>
+                <th>Visibilite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let liste of listes">
+                <td>{{ liste.titre }}</td>
+                <td>{{ liste.soustitre }}</td>
+                <td><img [src]="liste.image" alt="Image" width="50" /></td>
+                <td>{{ liste.description }}</td>
+                <td>{{ liste.type }}</td>
+                <td>{{ liste.verifie ? 'Yes' : 'No' }}</td>
+                <td>{{ liste.datePublication }}</td>
+                <td>{{ liste.visibilite }}</td>
+                <td>
+                    <button (click)="editListe(liste)">Modify</button>
+                    <button (click)="deleteListe(liste.id)">Delete</button>
+                    <button (click)="toggleChansons(liste.id)">Show Chansons</button>
+                    <button (click)="selectedListeId = liste.id">Add Chansons</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Child Table for Chansons -->
+    <div *ngIf="selectedListeId !== null">
+        <h3>Chansons for Selected List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Artiste</th>
+                    <th>Album</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let chanson of chansons">
+                    <td>{{ chanson.titre }}</td>
+                    <td>{{ chanson.artiste }}</td>
+                    <td>{{ chanson.album }}</td>
+                    <td>{{ chanson.duree }} secondes</td>
+                    <td>
+                        <button (click)="removeChansonFromList(selectedListeId, chanson.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Add Chansons Dropdown -->
+        <div *ngIf="selectedListeId !== null">
+            <select [(ngModel)]="selectedChansonId">
+                <option *ngFor="let chanson of allChansons" [value]="chanson.id">
+                    {{ chanson.titre }} - {{ chanson.artiste }}
+                </option>
+            </select>
+            <button (click)="addChansonToList(selectedListeId, selectedChansonId)">Add Chanson</button>
+        </div>
+    </div>
+</div>

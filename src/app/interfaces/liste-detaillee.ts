@@ -1,19 +1,16 @@
-import { Chansons } from "./chansons";
+import { Chanson } from "./chanson";
 
 export interface ListeDetaillee {
 
     id: number;
     titre: string;
-    sousTitre: string;
     image: string;
-    description: string;
     type: string;
     verifie: boolean;
-    DatePublication: string;
-    visibilite: string;
-    nombreSauvegardes: number;
-    chansons: Chansons[];
+    DateAjout: string | Date;
+    DateDerniereEcoutee: string | Date;
+    Commentaire?: string;
+    chanson: Chanson[];
 
 }
-
 

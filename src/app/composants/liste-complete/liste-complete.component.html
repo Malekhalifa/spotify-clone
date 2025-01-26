@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Listes de Chansons</h1>
+
+    <!-- Public Lists -->
+    <section>
+        <h2>Listes Publiques</h2>
+        <div *ngIf="publicListes.length > 0; else noPublicLists" class="list-grid">
+            <div *ngFor="let liste of publicListes" class="liste-card">
+                <img [src]="liste.image" [alt]="liste.titre" class="liste-image">
+                <h3>{{ liste.titre }}</h3>
+                <p class="soustitre">{{ liste.soustitre }}</p>
+                <p class="description">{{ liste.description }}</p>
+                <p class="date">Publié le: {{ liste.datePublication }}</p>
+                <span class="verifie" *ngIf="liste.verifie">✅ Vérifié</span>
+            </div>
+        </div>
+        <ng-template #noPublicLists>
+            <p>Aucune liste publique disponible.</p>
+        </ng-template>
+    </section>
+
+    <!-- Private Lists -->
+    <section>
+        <h2>Listes Privées</h2>
+        <div *ngIf="privateListes.length > 0; else noPrivateLists" class="list-grid">
+            <div *ngFor="let liste of privateListes" class="liste-card">
+                <img [src]="liste.image" [alt]="liste.titre" class="liste-image">
+                <h3>{{ liste.titre }}</h3>
+                <p class="soustitre">{{ liste.soustitre }}</p>
+                <p class="description">{{ liste.description }}</p>
+                <p class="date">Publié le: {{ liste.datePublication }}</p>
+                <span class="verifie" *ngIf="liste.verifie">✅ Vérifié</span>
+            </div>
+        </div>
+        <ng-template #noPrivateLists>
+            <p>Aucune liste privée disponible.</p>
+        </ng-template>
+    </section>
+</div>

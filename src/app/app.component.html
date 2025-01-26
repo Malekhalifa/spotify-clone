@@ -1,24 +1,45 @@
-<mat-drawer-container autosize>
+<mat-drawer-container autosize ngSkipHydration>
   <mat-drawer #drawer mode="side">
-
     <img src="library.png" alt="Bibliothèque Icon" class="search-icon" (click)="drawer.toggle()" />
+    <h1 class="titre-bibliotheque">Votre Bibliothèque</h1>
     <app-bibliotheque></app-bibliotheque>
-
   </mat-drawer>
 
-  <mat-drawer-content>
+  <mat-drawer-content ngSkipHydration>
     <img src="library.png" alt="Bibliothèque Icon" class="search-icon" mat-button (click)="drawer.toggle()" />
 
-    <div class="main-content">
+
+    <div>
       <!-- Liste détaillée -->
-      <div class="liste-detaillee">
+      <div>
         <app-liste-detaillee></app-liste-detaillee>
+
+      </div>
+      <div>
+        <app-liste-chansons></app-liste-chansons>
       </div>
 
-      <!-- Tableau des chansons -->
-      <div class="chanson">
+      <!-- Une chanson choisie -->
+      <div>
         <app-chanson></app-chanson>
+      </div>
+
+      <div>
+        <h1>Liste complete des listes Public </h1>
+        <app-liste-complet></app-liste-complet>
+      </div>
+      <div>
+        <h1>gestion des listes</h1>
+        <app-gestion-liste></app-gestion-liste>
+      </div>
+      <div>
+        <h1>listes des utilisateur</h1>
+        <app-admin-dashboard></app-admin-dashboard>
       </div>
     </div>
   </mat-drawer-content>
+
 </mat-drawer-container>
+
+
+<router-outlet />

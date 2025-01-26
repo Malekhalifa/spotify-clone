@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListeChansonsComponent } from '../liste-chansons/liste-chansons.component';
-import { MOCK_LISTESOMMAIRE } from '../../mocks/mock-listeSommaire'; // Import the mock list
-import { ListeSommaire } from '../../interfaces/liste-sommaire';
-import { Chanson } from '../../interfaces/chanson';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+import { ListeDetaillee } from '../../interfaces/liste-detaillee';
+import { MOCK_LISTEDETAILLEE } from '../../mocks/mock-listeDetaillee';
+
 
 @Component({
   selector: 'app-liste-detaillee',
   templateUrl: './liste-detaillee.component.html',
   styleUrls: ['./liste-detaillee.component.css'],
   standalone: true,
-  imports: [CommonModule, ListeChansonsComponent]
+  imports: [CommonModule, MatCardModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  
 })
 export class ListeDetailleeComponent implements OnInit {
-  listes: ListeSommaire[] = [];
-  chansons: Chanson[] = [];
+  listes: ListeDetaillee[] = [];
 
   ngOnInit(): void {
-    this.listes = MOCK_LISTESOMMAIRE.filter(item => item.id === 1 && item.titre === 'Chansons aimées');
-    this.chansons = MOCK_LISTESOMMAIRE[0].chansons;
+    this.listes = MOCK_LISTEDETAILLEE;
   }
 }

@@ -4,17 +4,21 @@ import { MOCK_CHANSONS } from '../../mocks/mock-chansons';
 import { CommonModule } from '@angular/common';
 import { MOCK_LISTESOMMAIRE } from '../../mocks/mock-listeSommaire';
 
-import { ChansonComponent } from "../chanson/chanson.component";
+
+import { DurationPipe } from '../../duration-pipe.pipe';
+import { NumberFormatPipe } from '../../number-format.pipe';
 
 @Component({
   selector: 'app-liste-chansons',
   templateUrl: './liste-chansons.component.html',
   styleUrls: ['./liste-chansons.component.css'],
-  imports: [CommonModule,],
+  imports: [CommonModule,
+    DurationPipe,
+    NumberFormatPipe
+  ],
   standalone: true
 })
 export class ListeChansonsComponent implements OnInit {
-  chansons_liste: Chanson[] = [];
   chansons: Chanson[] = [];
   verifiedArtists: Set<string> = new Set(); // To store verified artists
   selectedChanson: Chanson | null = null; // Initialize to null
@@ -22,7 +26,6 @@ export class ListeChansonsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chansons_liste = MOCK_LISTESOMMAIRE[0].chansons;
     this.chansons = MOCK_CHANSONS;  // ✅ Chargement des chansons mockées
     this.loadVerifiedArtists();
   }
@@ -44,4 +47,8 @@ export class ListeChansonsComponent implements OnInit {
   selectChanson(chanson: Chanson) {
     this.selectedChanson = chanson; // Update the selected chanson
   }
+  isPopular(chanson: Chanson): boolean {
+    return chanson.nombreDeLectures > 1000000;
+  }
 }
+
