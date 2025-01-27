@@ -157,11 +157,17 @@ export class GestionListeComponent implements OnInit {
   validateVisibilite(visibilite: string): boolean {
     return ['publique', 'prive'].includes(visibilite);
   }
+  valideVerifie(verifie: number): boolean {
+    return [0, 1].includes(verifie);
+  }
 
   createListe(): void {
     if (!this.validateVisibilite(this.currentListe.visibilite)) {
       alert("Invalid value for visibilite. Allowed values are 'publique' or 'prive'.");
       return;
+    }
+    if (!this.valideVerifie(this.currentListe.verifie)) {
+      this.currentListe.verifie = 0;
     }
     this.http.post('http://localhost/angular-crud/gestion-liste-api.php', this.currentListe).subscribe({
       next: () => {
