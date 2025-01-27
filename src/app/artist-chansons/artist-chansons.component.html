@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Chansons by Artist</h2>
+
+    <!-- Artist Dropdown -->
+    <div class="dropdown-container">
+        <select [(ngModel)]="selectedArtist" (change)="onArtistSelect()" class="artist-dropdown">
+            <option value="">Select an Artist</option>
+            <option *ngFor="let artist of artists" [value]="artist">
+                {{ artist }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Chansons Table -->
+    <table *ngIf="chansons.length > 0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Duration (s)</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Publication Date</th>
+                <th>Nombre de Lectures</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let chanson of chansons">
+                <td>{{ chanson.titre }}</td>
+                <td>{{ chanson.artiste }}</td>
+                <td>{{ chanson.album }}</td>
+                <td>{{ chanson.duree }}</td>
+                <td>{{ chanson.genre || '-' }}</td>
+                <td>{{ chanson.annee || '-' }}</td>
+                <td>{{ chanson.datePublication || '-' }}</td>
+                <td>{{ chanson.nombreDeLectures || '-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -11,6 +11,7 @@ import { Chanson } from './interfaces/chanson';
 import { ListeCompletComponent } from './composants/liste-complete/liste-complete.component';
 import { GestionListeComponent } from './gestion-liste/gestion-liste.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ArtistChansonsComponent } from './artist-chansons/artist-chansons.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,7 +27,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     ListeChansonsComponent,
     ListeCompletComponent,
     GestionListeComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ArtistChansonsComponent
   ]
 })
 export class AppComponent {
