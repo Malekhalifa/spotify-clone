@@ -9,14 +9,13 @@
 </div>
 <h3>Listes sommaires</h3>
 <table>
-  <tr *ngFor="let liste of listes">
+  <tr *ngFor="let liste of listes" (click)="sendListeId(liste.id)">
+    <!--this sends the list of chansons / i need to send only the id of the list-->
     <td>
       <img [src]="liste.image" alt="music image" style="height: 100px; width: 100px; border-radius: 5px;">
     </td>
     <td>{{ liste.titre }}</td>
-    <td>{{ liste.artiste }}
-      <img *ngIf="liste.verifie" src="check.png" alt="Verified Icon" class="verified-icon" />
-    </td>
     <td>{{ liste.type }}</td>
+    <td>{{ liste.soustitre }}</td>
   </tr>
 </table>

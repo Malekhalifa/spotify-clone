@@ -12,6 +12,8 @@ import { ListeCompletComponent } from './composants/liste-complete/liste-complet
 import { GestionListeComponent } from './gestion-liste/gestion-liste.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ArtistChansonsComponent } from './artist-chansons/artist-chansons.component';
+import { ChansonService } from './services/chanson.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,9 +35,10 @@ import { ArtistChansonsComponent } from './artist-chansons/artist-chansons.compo
 })
 export class AppComponent {
   title = 'Mymusic';
-
+  selectedId = 3;
   private http = inject(HttpClient);  // Inject HttpClient directly
   items: Chanson[] = [];
+  receivedId!: number;
 
   newItem: Chanson = {
     id: 0,
@@ -46,7 +49,7 @@ export class AppComponent {
     nombreDeLectures: 0
   };
 
-  constructor() {
+  constructor(private chansonService: ChansonService) {
     this.loadItems();
   }
 
@@ -82,5 +85,10 @@ export class AppComponent {
     this.http.delete(`http://localhost/angular-crud/mymusic-api.php?id=${id}`).subscribe(() => {
       this.loadItems();
     });
+  }
+
+  receiveId(id: number) {
+    this.receivedId = id;
+    console.log('Received ID in parent component:', id);
   }
 }

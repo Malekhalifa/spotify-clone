@@ -15,7 +15,7 @@
   background-color: #111;
   color: #fff;
   padding: 20px;
-  width: 40%
+  width: 30%
 }
 
 .mat-drawer-content {
@@ -31,11 +31,13 @@
   flex: 3
 }
 
-.mat-drawer {
-  transition: width .3s ease
-}
+
 
 .search-icon {
   margin-right: 10px;
   height: 40px
+}
+
+* {
+  padding: 2px;
 }

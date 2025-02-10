@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Chanson {
   id: number;
@@ -9,7 +9,7 @@ export interface Chanson {
   paroles: string;
   album: string;
   datePublication: string;
-  nombreDeLectures?: number,
+  nombreDeLectures: number,
   duree: number;
 }
 
@@ -18,6 +18,7 @@ export interface Chanson {
 })
 export class ChansonService {
   private apiUrl = 'http://localhost/angular-crud/mymusic-api.php';
+
 
   constructor(private http: HttpClient) { }
 
@@ -41,4 +42,5 @@ export class ChansonService {
   deleteChanson(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}?id=${id}`);
   }
+
 }

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListeSommaireComponent } from '../liste-sommaire/liste-sommaire.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-bibliotheque',
@@ -13,4 +13,18 @@ import {MatChipsModule} from '@angular/material/chips';
 })
 export class BibliothequeComponent {
   searchQuery: string = ''; // Déclaration de la variable pour la recherche
+
+  receivedId!: number;
+
+  receiveId(id: number) {
+    this.receivedId = id;
+    console.log('Received ID in bibliotheque :', id);
+    this.sendId();
+  }
+
+  @Output() idEvent = new EventEmitter<number>();
+
+  sendId() {
+    this.idEvent.emit(this.receivedId); // Sending ID to the parent
+  }
 }

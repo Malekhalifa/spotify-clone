@@ -86,13 +86,11 @@
         </table>
 
         <!-- Add Chansons Dropdown -->
-        <div *ngIf="selectedListeId !== null">
-            <select [(ngModel)]="selectedChansonId">
-                <option *ngFor="let chanson of allChansons" [value]="chanson.id">
-                    {{ chanson.titre }} - {{ chanson.artiste }}
-                </option>
-            </select>
-            <button (click)="addChansonToList(selectedListeId, selectedChansonId)">Add Chanson</button>
-        </div>
+        <select [(ngModel)]="selectedChansonId">
+            <option *ngFor="let chanson of allChansons" [value]="chanson.id">
+                {{ chanson.titre }} - {{ chanson.artiste }}
+            </option>
+        </select>
+        <button (click)="addChansonToList(selectedListeId, selectedChansonId)">Add Chanson</button>
     </div>
 </div>

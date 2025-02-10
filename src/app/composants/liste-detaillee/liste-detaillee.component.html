@@ -1,28 +1,27 @@
 <mat-card *ngFor="let liste of listes" appearance="outlined">
+  <mat-card-content>
+    <table>
+      <tr>
+        <td><img mat-card-image [src]="liste.image" alt="music image"
+            style="height: 100px; width: 100px; border-radius: 5px;"></td>
+        <td>{{ liste.titre }}</td>
+      </tr>
+
+    </table>
+
+
     <mat-card-content>
       <table>
         <tr>
-          <td><img mat-card-image [src]="liste.image" alt="music image" style="height: 100px; width: 100px; border-radius: 5px;"></td>
-        <td>{{ liste.titre }}</td>
-      </tr>
-      
+
+          <td>{{ liste.soustitre }}</td>
+          <td>{{ liste.type }}</td>
+          <td>{{ liste.description }}</td>
+          <td>{{ liste.datePublication }}</td>
+          <td>{{ liste.nombreDeSauvgarde }}</td>
+
+        </tr>
       </table>
-      
-      
-      <mat-card-content>
-        <table>
-          <tr>
-            
-            <td>{{ liste.type }}</td>
-            <td>{{ liste.verifie }}</td>
-            <td>{{ liste.DateAjout }}</td>
-            <td>{{ liste.DateDerniereEcoutee }}</td>
-            <td>{{ liste.Commentaire }}</td>
-                       
-          </tr>
-        </table>
-      </mat-card-content>
     </mat-card-content>
-  </mat-card>
-  
-  
+  </mat-card-content>
+</mat-card>

@@ -1,11 +1,21 @@
-import { OnInit } from '@angular/core';
+import { Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import { ListeDetaillee } from '../../interfaces/liste-detaillee';
-import { MOCK_LISTEDETAILLEE } from '../../mocks/mock-listeDetaillee';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { HttpClient } from '@angular/common/http';
 
-
+interface Liste {
+  id: number;
+  titre: string;
+  soustitre: string;
+  image: string;
+  description: string;
+  type: string;
+  verifie: number;
+  datePublication: string;
+  visibilite: string;
+  nombreDeSauvgarde?: number;
+}
 @Component({
   selector: 'app-liste-detaillee',
   templateUrl: './liste-detaillee.component.html',
@@ -13,12 +23,24 @@ import { MOCK_LISTEDETAILLEE } from '../../mocks/mock-listeDetaillee';
   standalone: true,
   imports: [CommonModule, MatCardModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+
 })
 export class ListeDetailleeComponent implements OnInit {
-  listes: ListeDetaillee[] = [];
+  listes: Liste[] = [];
+  @Input() id!: number; // Receiving the ID from parent
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.listes = MOCK_LISTEDETAILLEE;
+    console.log("id : ", this.id);
+    this.fetchListes();
   }
+  fetchListes(): void {
+    this.http.get<Liste[]>(`http://localhost/angular-crud/listedetaille-api.php?liste_id=${this.id}`).subscribe({
+      next: (data) => (this.listes = data),
+      error: (error) => console.error('Error fetching lists:', error)
+    });
+  }
+
+
 }

@@ -97,10 +97,10 @@ export class GestionListeComponent implements OnInit {
   }
 
   addChansonToList(liste_id: number, chanson_id: number): void {
-    this.http.post(`http://localhost/angular-crud/gestion-liste-api.php?liste_id=${liste_id}`, { chanson_id }).subscribe({
+    this.http.post(`http://localhost/angular-crud/gestion-liste-api.php`, { liste_id, chanson_id }).subscribe({
       next: () => {
         // After adding the chanson, refresh the list of chansons
-        this.fetchChansonsForList(liste_id);
+        this.fetchChansonsForList(liste_id)
       },
       error: (error) => console.error('Error adding chanson to list:', error)
     });

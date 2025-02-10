@@ -1,18 +1,17 @@
 <mat-drawer-container autosize ngSkipHydration>
-  <mat-drawer #drawer mode="side">
-    <img src="library.png" alt="Bibliothèque Icon" class="search-icon" (click)="drawer.toggle()" />
+  <mat-drawer #drawer mode="side" opened>
+    <img src="library.png" alt="Bibliothèque Icon" class="search-icon" />
     <h1 class="titre-bibliotheque">Votre Bibliothèque</h1>
-    <app-bibliotheque></app-bibliotheque>
+    <app-bibliotheque (idEvent)="receiveId($event)"></app-bibliotheque>
   </mat-drawer>
 
   <mat-drawer-content ngSkipHydration>
-    <img src="library.png" alt="Bibliothèque Icon" class="search-icon" mat-button (click)="drawer.toggle()" />
 
 
     <div>
       <!-- Liste détaillée -->
       <div>
-        <app-liste-detaillee></app-liste-detaillee>
+        <app-liste-detaillee [id]="selectedId"></app-liste-detaillee>
 
       </div>
       <div>
@@ -25,7 +24,7 @@
       </div>
 
       <div>
-        <h1>Liste complete des listes Public </h1>
+        <h1>Liste complete des listes </h1>
         <app-liste-complet></app-liste-complet>
       </div>
       <div>

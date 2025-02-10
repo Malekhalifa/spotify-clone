@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Chanson } from '../../interfaces/chanson';
-import { MOCK_CHANSONS } from '../../mocks/mock-chansons';
 import { CommonModule } from '@angular/common';
 import { MOCK_LISTESOMMAIRE } from '../../mocks/mock-listeSommaire';
-
+import { ChansonService } from '../../services/chanson.service';
 
 import { DurationPipe } from '../../duration-pipe.pipe';
 import { NumberFormatPipe } from '../../number-format.pipe';
@@ -14,7 +13,7 @@ import { NumberFormatPipe } from '../../number-format.pipe';
   styleUrls: ['./liste-chansons.component.css'],
   imports: [CommonModule,
     DurationPipe,
-    NumberFormatPipe
+    NumberFormatPipe,
   ],
   standalone: true
 })
@@ -23,10 +22,9 @@ export class ListeChansonsComponent implements OnInit {
   verifiedArtists: Set<string> = new Set(); // To store verified artists
   selectedChanson: Chanson | null = null; // Initialize to null
 
-  constructor() { }
+  constructor(private chansonService: ChansonService) { }
 
   ngOnInit(): void {
-    this.chansons = MOCK_CHANSONS;  // ✅ Chargement des chansons mockées
     this.loadVerifiedArtists();
   }
 
