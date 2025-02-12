@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface Chanson {
-  id: number;
-  titre: string;
-  artiste: string;
-  paroles: string;
-  album: string;
-  datePublication: string;
-  nombreDeLectures: number,
-  duree: number;
-}
+import { Chanson } from '../../interfaces/chanson';
 
 @Injectable({
   providedIn: 'root'

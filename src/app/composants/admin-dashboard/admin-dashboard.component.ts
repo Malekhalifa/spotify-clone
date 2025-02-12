@@ -1,46 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { NgFor, CommonModule } from '@angular/common';
-interface Utilisateur {
-  id: number;
-  nom: string;
-  prenom: string;
-}
-
-interface Liste {
-  id: number;
-  titre: string;
-  soustitre: string;
-  description: string;
-  visibilite: string;
-  chansons: Chanson[];
-}
-
-interface Chanson {
-  id: number;
-  titre: string;
-  artiste: string;
-  duree: number;
-}
+import { ApiService } from '../../services/Admin-dashboard/admin-dashboard.service';
+import { Utilisateur } from '../../interfaces/utilisateur';
+import { Liste } from '../../interfaces/liste';
+import { Chanson } from '../../interfaces/chanson';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css'],
-  imports: [NgFor, CommonModule]
+  styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
   utilisateurs: Utilisateur[] = [];
-  listesParUtilisateur: { [key: number]: Liste[] } = {} ;
+  listesParUtilisateur: { [key: number]: Liste[] } = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.fetchUtilisateurs();
   }
 
   fetchUtilisateurs(): void {
-    this.http.get<Utilisateur[]>('http://localhost/angular-crud/utilisateurs-api.php').subscribe({
+    this.apiService.getUtilisateurs().subscribe({
       next: (data) => {
         this.utilisateurs = data;
         this.fetchListesPourUtilisateurs();
@@ -51,7 +31,7 @@ export class AdminDashboardComponent implements OnInit {
 
   fetchListesPourUtilisateurs(): void {
     this.utilisateurs.forEach(utilisateur => {
-      this.http.get<Liste[]>(`http://localhost/angular-crud/listes-utilisateur-api.php?utilisateur_id=${utilisateur.id}`).subscribe({
+      this.apiService.getListesParUtilisateur(utilisateur.id).subscribe({
         next: (playlists) => {
           playlists.forEach(playlist => {
             this.fetchChansonsPourListe(playlist);
@@ -64,7 +44,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   fetchChansonsPourListe(playlist: Liste): void {
-    this.http.get<Chanson[]>(`http://localhost/angular-crud/gestion-liste-api.php?liste_id=${playlist.id}`).subscribe({
+    this.apiService.getChansonsPourListe(playlist.id).subscribe({
       next: (chansons) => {
         playlist.chansons = chansons;
       },

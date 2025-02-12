@@ -1,33 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Liste {
-  id: number;
-  titre: string;
-  soustitre: string;
-  image: string;
-  description: string;
-  type: string;
-  verifie: number;
-  datePublication: string;
-  visibilite: string;
-}
-
-interface Chanson {
-  id: number;
-  titre: string;
-  artiste: string;
-  album: string;
-  duree: number;
-  genre?: string;
-  annee?: number;
-  image?: string;
-  nombreDeLectures: number;
-  paroles?: string;
-  datePublication?: string;
-}
+import { ListeService } from '../../services/Gestion-liste/gestion-liste.service';
+import { Liste } from '../../interfaces/liste';
+import { Chanson } from '../../interfaces/chanson';
 
 @Component({
   selector: 'app-gestion-liste',
@@ -57,7 +33,7 @@ export class GestionListeComponent implements OnInit {
   selectedChansonId: number = 0;
   chansons: Chanson[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private listeService: ListeService) { }
 
   ngOnInit(): void {
     this.fetchListes();
@@ -65,65 +41,39 @@ export class GestionListeComponent implements OnInit {
   }
 
   fetchListes(searchTerm: string = ''): void {
-    let url = 'http://localhost/angular-crud/gestion-liste-api.php';
-    if (searchTerm) {
-      url += `?search=${encodeURIComponent(searchTerm)}`;
-    }
-
-    this.http.get<Liste[]>(url).subscribe({
-      next: (data) => (this.listes = data),
+    this.listeService.fetchListes(searchTerm).subscribe({
+      next: (data) => this.listes = data,
       error: (error) => console.error('Error fetching lists:', error)
     });
   }
 
   fetchAllChansons(): void {
-    this.http.get<Chanson[]>('http://localhost/angular-crud/chansons-api.php').subscribe({
-      next: (data) => (this.allChansons = data),
+    this.listeService.fetchAllChansons().subscribe({
+      next: (data) => this.allChansons = data,
       error: (error) => console.error('Error fetching all chansons:', error)
     });
   }
 
   fetchChansonsForList(liste_id: number): void {
-    this.http.get<Chanson[]>(`http://localhost/angular-crud/gestion-liste-api.php?liste_id=${liste_id}`).subscribe({
-      next: (data) => {
-        console.log("Fetched chansons:", data); // Log the response
-        this.chansons = Array.isArray(data) ? data : []; // Ensure `data` is an array
-      },
+    this.listeService.fetchChansonsForList(liste_id).subscribe({
+      next: (data) => this.chansons = Array.isArray(data) ? data : [],
       error: (error) => {
         console.error('Error fetching chansons for list:', error);
-        this.chansons = []; // Reset to an empty array on error
+        this.chansons = [];
       }
     });
   }
 
   addChansonToList(liste_id: number, chanson_id: number): void {
-    this.http.post(`http://localhost/angular-crud/gestion-liste-api.php`, { liste_id, chanson_id }).subscribe({
-      next: () => {
-        // After adding the chanson, refresh the list of chansons
-        this.fetchChansonsForList(liste_id)
-      },
+    this.listeService.addChansonToList(liste_id, chanson_id).subscribe({
+      next: () => this.fetchChansonsForList(liste_id),
       error: (error) => console.error('Error adding chanson to list:', error)
     });
   }
 
-  toggleChansons(liste_id: number): void {
-    if (this.selectedListeId === liste_id) {
-      // If the same list is clicked again, hide the chansons
-      this.selectedListeId = null;
-      this.chansons = []; // Clear the chansons array
-    } else {
-      // If a different list is clicked, update the selectedListeId and fetch chansons
-      this.fetchChansonsForList(liste_id); // Fetch chansons for the selected list
-      this.selectedListeId = liste_id;
-    }
-  }
-
   removeChansonFromList(liste_id: number, chanson_id: number): void {
-    this.http.delete(`http://localhost/angular-crud/gestion-liste-api.php?liste_id=${liste_id}&chanson_id=${chanson_id}`).subscribe({
-      next: () => {
-        // After removing the chanson, refresh the list of chansons
-        this.fetchChansonsForList(liste_id);
-      },
+    this.listeService.removeChansonFromList(liste_id, chanson_id).subscribe({
+      next: () => this.fetchChansonsForList(liste_id),
       error: (error) => console.error('Error removing chanson from list:', error)
     });
   }
@@ -157,6 +107,7 @@ export class GestionListeComponent implements OnInit {
   validateVisibilite(visibilite: string): boolean {
     return ['publique', 'prive'].includes(visibilite);
   }
+
   valideVerifie(verifie: number): boolean {
     return [0, 1].includes(verifie);
   }
@@ -169,7 +120,7 @@ export class GestionListeComponent implements OnInit {
     if (!this.valideVerifie(this.currentListe.verifie)) {
       this.currentListe.verifie = 0;
     }
-    this.http.post('http://localhost/angular-crud/gestion-liste-api.php', this.currentListe).subscribe({
+    this.listeService.createListe(this.currentListe).subscribe({
       next: () => {
         this.fetchListes();
         this.toggleForm();
@@ -189,7 +140,7 @@ export class GestionListeComponent implements OnInit {
       alert("Invalid value for visibilite. Allowed values are 'publique' or 'prive'.");
       return;
     }
-    this.http.put(`http://localhost/angular-crud/gestion-liste-api.php`, this.currentListe).subscribe({
+    this.listeService.updateListe(this.currentListe).subscribe({
       next: () => {
         this.fetchListes();
         this.toggleForm();
@@ -199,7 +150,7 @@ export class GestionListeComponent implements OnInit {
   }
 
   deleteListe(id: number): void {
-    this.http.delete(`http://localhost/angular-crud/gestion-liste-api.php?id=${id}`).subscribe({
+    this.listeService.deleteListe(id).subscribe({
       next: () => this.fetchListes(),
       error: (error) => console.error('Error deleting list:', error)
     });

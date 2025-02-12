@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Chanson } from '../../interfaces/chanson';
 import { CommonModule } from '@angular/common';
 import { MOCK_LISTESOMMAIRE } from '../../mocks/mock-listeSommaire';
-import { ChansonService } from '../../services/chanson.service';
 
 import { DurationPipe } from '../../duration-pipe.pipe';
 import { NumberFormatPipe } from '../../number-format.pipe';
@@ -22,13 +21,15 @@ export class ListeChansonsComponent implements OnInit {
   verifiedArtists: Set<string> = new Set(); // To store verified artists
   selectedChanson: Chanson | null = null; // Initialize to null
 
-  constructor(private chansonService: ChansonService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.loadVerifiedArtists();
   }
 
   loadVerifiedArtists() {
+    //TO-DO
+    //replace the mock with list from Database using API/Service
     MOCK_LISTESOMMAIRE.forEach(liste => {
       if (liste.verifie) {
         liste.chansons.forEach(chanson => {

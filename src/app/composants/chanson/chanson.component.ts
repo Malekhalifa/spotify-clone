@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChansonService, Chanson } from '../../services/chanson.service';
+import { ChansonService } from '../../services/Chansons/chanson.service';
 import { FormsModule } from '@angular/forms';
+import { Chanson } from '../../interfaces/chanson';
 @Component({
   selector: 'app-chanson',
   standalone: true,
@@ -36,7 +37,7 @@ export class ChansonComponent implements OnInit {
 
         // Initialize nextId based on the highest ID in the chansons list
         if (this.chansons.length > 0) {
-          const maxId = Math.max(...this.chansons.map(chanson => chanson.id));
+          const maxId = Math.max(...this.chansons.map(chanson => chanson.id || 0));
           this.nextId = maxId + 1;
         } else {
           this.nextId = 1; // If no chansons exist, start from 1
