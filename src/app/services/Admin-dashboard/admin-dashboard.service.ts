@@ -8,7 +8,7 @@ import { Chanson } from '../../interfaces/chanson';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class AdminDashboardService {
   private baseUrl = 'http://localhost/angular-crud';
 
   constructor(private http: HttpClient) { }

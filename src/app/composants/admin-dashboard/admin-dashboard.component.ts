@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/Admin-dashboard/admin-dashboard.service';
+import { AdminDashboardService } from '../../services/Admin-dashboard/admin-dashboard.service';
 import { Utilisateur } from '../../interfaces/utilisateur';
 import { Liste } from '../../interfaces/liste';
-import { Chanson } from '../../interfaces/chanson';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -13,14 +12,14 @@ export class AdminDashboardComponent implements OnInit {
   utilisateurs: Utilisateur[] = [];
   listesParUtilisateur: { [key: number]: Liste[] } = {};
 
-  constructor(private apiService: ApiService) { }
+  constructor(private AdminDashboardService: AdminDashboardService) { }
 
   ngOnInit(): void {
     this.fetchUtilisateurs();
   }
 
   fetchUtilisateurs(): void {
-    this.apiService.getUtilisateurs().subscribe({
+    this.AdminDashboardService.getUtilisateurs().subscribe({
       next: (data) => {
         this.utilisateurs = data;
         this.fetchListesPourUtilisateurs();
@@ -31,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
 
   fetchListesPourUtilisateurs(): void {
     this.utilisateurs.forEach(utilisateur => {
-      this.apiService.getListesParUtilisateur(utilisateur.id).subscribe({
+      this.AdminDashboardService.getListesParUtilisateur(utilisateur.id).subscribe({
         next: (playlists) => {
           playlists.forEach(playlist => {
             this.fetchChansonsPourListe(playlist);
@@ -44,7 +43,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   fetchChansonsPourListe(playlist: Liste): void {
-    this.apiService.getChansonsPourListe(playlist.id).subscribe({
+    this.AdminDashboardService.getChansonsPourListe(playlist.id).subscribe({
       next: (chansons) => {
         playlist.chansons = chansons;
       },

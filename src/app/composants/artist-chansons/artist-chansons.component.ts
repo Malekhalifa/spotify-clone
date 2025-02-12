@@ -3,7 +3,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Chanson } from '../../interfaces/chanson';
-import { ApiService } from '../../services/Artiste-chansons/artiste-chansons.service';
+import { ArtisteChansonService } from '../../services/Artiste-chansons/artiste-chansons.service';
 
 @Component({
   selector: 'app-artist-chansons',
@@ -18,14 +18,14 @@ export class ArtistChansonsComponent implements OnInit {
   chansons: Chanson[] = [];
   errorMessage: string = '';
 
-  constructor(private apiService: ApiService) { }
+  constructor(private ArtisteChansonService: ArtisteChansonService) { }
 
   ngOnInit(): void {
     this.fetchArtists();
   }
 
   fetchArtists(): void {
-    this.apiService.getArtists().subscribe({
+    this.ArtisteChansonService.getArtists().subscribe({
       next: (data) => this.artists = data,
       error: () => this.errorMessage = 'Failed to load artists'
     });
@@ -34,7 +34,7 @@ export class ArtistChansonsComponent implements OnInit {
   onArtistSelect(): void {
     if (!this.selectedArtist) return;
 
-    this.apiService.getChansonsByArtist(this.selectedArtist).subscribe({
+    this.ArtisteChansonService.getChansonsByArtist(this.selectedArtist).subscribe({
       next: (data) => {
         this.chansons = data;
         this.errorMessage = data.length === 0 ? 'No chansons found for this artist' : '';
