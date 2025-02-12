@@ -9,10 +9,10 @@ import { ListeChansonsComponent } from './composants/liste-chansons/liste-chanso
 import { HttpClient } from '@angular/common/http';
 import { Chanson } from './interfaces/chanson';
 import { ListeCompletComponent } from './composants/liste-complete/liste-complete.component';
-import { GestionListeComponent } from './gestion-liste/gestion-liste.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { ArtistChansonsComponent } from './artist-chansons/artist-chansons.component';
-import { ChansonService } from './services/chanson.service';
+import { GestionListeComponent } from './composants/gestion-liste/gestion-liste.component';
+import { AdminDashboardComponent } from './composants/admin-dashboard/admin-dashboard.component';
+import { ArtistChansonsComponent } from './composants/artist-chansons/artist-chansons.component';
+import { ChansonService } from './services/Chansons/chanson.service';
 
 @Component({
   selector: 'app-root',

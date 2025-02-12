@@ -1,9 +1,9 @@
 export interface Chanson {
-    id?: number;
+    id: number;
     titre?: string;
     artiste: string;
     album?: string;
-    duree?: number;
+    duree: number;
     genre?: string;
     annee?: number;
     image?: string;

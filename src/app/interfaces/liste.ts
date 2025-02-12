@@ -10,4 +10,5 @@ export interface Liste {
     type?: string;
     verifie: number;
     datePublication?: string;
+    nombreDeSauvgarde?: number;
 }

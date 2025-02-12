@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AdminDashboardService } from '../../services/Admin-dashboard/admin-dashboard.service';
 import { Utilisateur } from '../../interfaces/utilisateur';
 import { Liste } from '../../interfaces/liste';
-
+import { HttpClient } from '@angular/common/http';
+import { NgFor, CommonModule } from '@angular/common';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  styleUrls: ['./admin-dashboard.component.css'],
+  imports: [NgFor, CommonModule]
 })
 export class AdminDashboardComponent implements OnInit {
   utilisateurs: Utilisateur[] = [];

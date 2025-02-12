@@ -40,6 +40,19 @@ export class GestionListeComponent implements OnInit {
     this.fetchAllChansons();
   }
 
+  toggleChansons(liste_id: number): void {
+    if (this.selectedListeId === liste_id) {
+      // If the same list is clicked again, hide the chansons
+      this.selectedListeId = null;
+      this.chansons = []; // Clear the chansons array
+    } else {
+      // If a different list is clicked, update the selectedListeId and fetch chansons
+      this.fetchChansonsForList(liste_id); // Fetch chansons for the selected list
+      this.selectedListeId = liste_id;
+    }
+  }
+
+
   fetchListes(searchTerm: string = ''): void {
     this.listeService.fetchListes(searchTerm).subscribe({
       next: (data) => this.listes = data,
