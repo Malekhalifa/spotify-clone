@@ -18,7 +18,7 @@ export class BibliothequeComponent {
 
   receiveId(id: number) {
     this.receivedId = id;
-    console.log('Received ID in bibliotheque :', id);
+    // console.log('Received ID in bibliotheque :', id);
     this.sendId();
   }
 

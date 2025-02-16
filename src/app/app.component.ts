@@ -35,7 +35,7 @@ import { ChansonService } from './services/Chansons/chanson.service';
 })
 export class AppComponent {
   title = 'Mymusic';
-  selectedId = 3;
+  selectedId = 1;
   private http = inject(HttpClient);  // Inject HttpClient directly
   items: Chanson[] = [];
   receivedId!: number;
@@ -89,6 +89,6 @@ export class AppComponent {
 
   receiveId(id: number) {
     this.receivedId = id;
-    console.log('Received ID in parent component:', id);
+    // console.log('Received ID in parent component:', id);
   }
 }

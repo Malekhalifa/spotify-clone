@@ -1,4 +1,4 @@
-<div class="tableau-chansons liste-chansons">
+<!-- <div class="tableau-chansons liste-chansons">
   <h2 class="text-center">Chansons</h2>
   <div class="grid grid-cols-3 gap-4">
     <div *ngFor="let chanson of chansons" class="card" (click)="selectChanson(chanson)"
@@ -19,4 +19,30 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<h3>Chansons for Selected List</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Artiste</th>
+      <th>Album</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let chanson of chansons" (click)="selectChanson(chanson)">
+      <td>{{ chanson.titre }}</td>
+      <td>{{ chanson.artiste }}</td>
+      <td>{{ chanson.album }}</td>
+      <td>{{ formatDuree(chanson.duree) }}</td>
+      <td>
+        <button (click)="removeChansonFromList(chanson)">Remove</button> <!-- Remove button -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Display the chansons-detaille component when a chanson is selected -->
+<app-chansons-detaille *ngIf="selectedChanson" [selectedChanson]="selectedChanson" [listeId]="selectedListeId"
+  (chansonAdded)="onChansonAdded()"></app-chansons-detaille>

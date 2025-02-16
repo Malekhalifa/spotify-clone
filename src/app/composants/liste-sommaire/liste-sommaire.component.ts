@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { ChangerListeService } from '../../services/ChangerListe/changer-liste.service';
 @Component({
   selector: 'app-liste-sommaire',
   imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule],
@@ -21,7 +21,7 @@ export class ListeSommaireComponent implements OnInit {
   showInput: boolean = false;
   @Output() idliste = new EventEmitter<number>();
 
-  constructor(private cdr: ChangeDetectorRef, private listeSommaireService: ListeSommaireService) { }
+  constructor(private cdr: ChangeDetectorRef, private listeSommaireService: ListeSommaireService, public ChangerListe: ChangerListeService) { }
 
   ngOnInit(): void {
     this.fetchListes();
@@ -43,7 +43,8 @@ export class ListeSommaireComponent implements OnInit {
   }
 
   sendListeId(liste_id: number): void {
+    this.ChangerListe.sendIdAndTrigger(liste_id);
     this.idliste.emit(liste_id);
-    console.log(liste_id, " lllll");
+    // console.log(" Liste ID in the Liste Sommaire Component : ", liste_id);
   }
 }

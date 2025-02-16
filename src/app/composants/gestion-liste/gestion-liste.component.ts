@@ -25,7 +25,8 @@ export class GestionListeComponent implements OnInit {
     type: '',
     verifie: 0,
     datePublication: '',
-    visibilite: ''
+    visibilite: '',
+    nombreDeSauvgarde: 0
   };
   searchTerm: string = '';
   selectedListeId: number | null = null;
@@ -113,7 +114,8 @@ export class GestionListeComponent implements OnInit {
       type: '',
       verifie: 0,
       datePublication: '',
-      visibilite: ''
+      visibilite: '',
+      nombreDeSauvgarde: 0
     };
   }
 

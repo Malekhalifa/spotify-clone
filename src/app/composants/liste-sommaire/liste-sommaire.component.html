@@ -9,7 +9,7 @@
 </div>
 <h3>Listes sommaires</h3>
 <table>
-  <tr *ngFor="let liste of listes" (click)="sendListeId(liste.id)">
+  <tr *ngFor="let liste of listes" (click)="sendListeId(liste.id)" >
     <!--this sends the list of chansons / i need to send only the id of the list-->
     <td>
       <img [src]="liste.image" alt="music image" style="height: 100px; width: 100px; border-radius: 5px;">

@@ -1,0 +1,50 @@
+<div *ngIf="selectedChanson">
+    <h2>{{ selectedChanson.titre }}</h2>
+    <table style="border: 1px solid #ddd; border-collapse: collapse; width: 100%;">
+        <thead style="background-color: rgb(120, 119, 119); color: white;">
+            <tr>
+                <th style="padding: 8px;">Artist</th>
+                <th style="padding: 8px;">Album</th>
+                <th style="padding: 8px;">Duration</th>
+                <th style="padding: 8px;">Genre</th>
+                <th style="padding: 8px;">Year</th>
+                <th style="padding: 8px;">Plays</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #f4f4f4;">
+                <td style="padding: 8px;">{{ selectedChanson.artiste }}</td>
+                <td style="padding: 8px;">{{ selectedChanson.album }}</td>
+                <td style="padding: 8px;">{{ selectedChanson.duree }} seconds</td>
+                <td style="padding: 8px;">{{ selectedChanson.genre }}</td>
+                <td style="padding: 8px;">{{ selectedChanson.annee }}</td>
+                <td style="padding: 8px;">{{ selectedChanson.nombreDeLectures }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <h3>Suggestions de Chansons</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Artiste</th>
+                <th>Album</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let chanson of suggestedChansons">
+                <td>{{ chanson.titre }}</td>
+                <td>{{ chanson.artiste }}</td>
+                <td>{{ chanson.album }}</td>
+                <td>
+                    <button (click)="addToCurrentList(chanson)">Ajouter à la liste</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
